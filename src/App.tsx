@@ -80,6 +80,16 @@ const App: React.FC = () => {
     handleCloseEditForm()
   }
 
+  const handleStatusChange = (
+    todoId: number,
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const status = e.target.value as 'notStarted' | 'inProgress' | 'done'
+    setTodos(
+      todos.map((todo) => (todo.id === todoId ? { ...todo, status } : todo))
+    )
+  }
+
   return <div className="App">{/* ここにUI */}</div>
 }
 
