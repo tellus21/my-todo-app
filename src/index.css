@@ -28,6 +28,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -65,4 +67,20 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+label {
+  font-size: 30px;
+  margin: 20px 20px 0 0;
+}
+span,
+select,
+li,
+input {
+  font-size: 30px;
+}
+
+select {
+  font-size: 30px;
+  margin: 20px 0;
 }

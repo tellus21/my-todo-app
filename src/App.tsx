@@ -10,9 +10,9 @@ type Todo = {
 const App: React.FC = () => {
   // TODOリスト
   const [todos, setTodos] = useState<Todo[]>([
-    { id: 1, title: '買い物をする', status: 'notStarted' },
-    { id: 2, title: '部屋の掃除', status: 'inProgress' },
-    { id: 3, title: '企画書作成', status: 'done' },
+    { id: 1, title: 'TODO1', status: 'notStarted' },
+    { id: 2, title: 'TODO2', status: 'inProgress' },
+    { id: 3, title: 'TODO3', status: 'done' },
   ])
 
   // 新規TODO用
@@ -120,6 +120,7 @@ const App: React.FC = () => {
 
       {/* フィルター */}
       <div>
+        <label htmlFor="filter">ステータスフィルター:</label>
         <select value={filter} onChange={handleFilterChange}>
           <option value="all">すべて</option>
           <option value="notStarted">未着手</option>
