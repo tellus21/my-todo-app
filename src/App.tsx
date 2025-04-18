@@ -28,6 +28,22 @@ const App: React.FC = () => {
   const [filter, setFilter] = useState<string>('all')
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>(todos)
 
+  const handleSetTodoTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTodoTitle(e.target.value)
+  }
+
+  const resetTodoTitle = () => {
+    setTodoTitle('')
+  }
+
+  const handleAddTodo = () => {
+    if (!todoTitle.trim()) return // 空白のTODOは追加しない
+
+    setTodos([...todos, { id: todoId, title: todoTitle, status: 'notStarted' }])
+    setTodoId(todoId + 1)
+    resetTodoTitle()
+  }
+
   return <div className="App">{/* ここにUI */}</div>
 }
 
