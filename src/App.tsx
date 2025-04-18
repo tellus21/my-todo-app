@@ -44,6 +44,15 @@ const App: React.FC = () => {
     resetTodoTitle()
   }
 
+  const handleDeleteTodo = (targetId: number) => {
+    setTodos(todos.filter((todo) => todo.id !== targetId))
+
+    // 編集中のTODOが削除された場合、編集モードを閉じる
+    if (editId === targetId) {
+      handleCloseEditForm()
+    }
+  }
+
   return <div className="App">{/* ここにUI */}</div>
 }
 
