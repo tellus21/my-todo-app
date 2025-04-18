@@ -53,6 +53,33 @@ const App: React.FC = () => {
     }
   }
 
+  const handleSetNewTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewTitle(e.target.value)
+  }
+
+  const handleOpenEditForm = (todo: Todo) => {
+    setIsEditable(true)
+    setEditId(todo.id)
+    setNewTitle(todo.title)
+  }
+
+  const handleCloseEditForm = () => {
+    setIsEditable(false)
+    setEditId(undefined)
+    setNewTitle('')
+  }
+
+  const handleEditTodo = () => {
+    if (!newTitle.trim() || editId === undefined) return
+
+    setTodos(
+      todos.map((todo) =>
+        todo.id === editId ? { ...todo, title: newTitle } : todo
+      )
+    )
+    handleCloseEditForm()
+  }
+
   return <div className="App">{/* ここにUI */}</div>
 }
 
