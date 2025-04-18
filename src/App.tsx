@@ -114,7 +114,64 @@ const App: React.FC = () => {
     filteringTodos()
   }, [filter, todos])
 
-  return <div className="App">{/* ここにUI */}</div>
+  return (
+    <div className="App">
+      <h1>TODOアプリ</h1>
+
+      {/* フィルター */}
+      <div>
+        <select value={filter} onChange={handleFilterChange}>
+          <option value="all">すべて</option>
+          <option value="notStarted">未着手</option>
+          <option value="inProgress">作業中</option>
+          <option value="done">完了</option>
+        </select>
+      </div>
+
+      {/* 追加フォーム / 編集フォーム */}
+      {!isEditable ? (
+        <div>
+          <input
+            type="text"
+            placeholder="TODOを入力"
+            value={todoTitle}
+            onChange={handleSetTodoTitle}
+          />
+          <button onClick={handleAddTodo}>追加</button>
+        </div>
+      ) : (
+        <div>
+          <input
+            type="text"
+            placeholder="新しいタイトル"
+            value={newTitle}
+            onChange={handleSetNewTitle}
+          />
+          <button onClick={handleEditTodo}>保存</button>
+          <button onClick={handleCloseEditForm}>キャンセル</button>
+        </div>
+      )}
+
+      {/* TODOリスト */}
+      <ul>
+        {filteredTodos.map((todo) => (
+          <li key={todo.id}>
+            <span>{todo.title}</span>
+            <select
+              value={todo.status}
+              onChange={(e) => handleStatusChange(todo.id, e)}
+            >
+              <option value="notStarted">未着手</option>
+              <option value="inProgress">作業中</option>
+              <option value="done">完了</option>
+            </select>
+            <button onClick={() => handleOpenEditForm(todo)}>編集</button>
+            <button onClick={() => handleDeleteTodo(todo.id)}>削除</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
 }
 
 export default App
