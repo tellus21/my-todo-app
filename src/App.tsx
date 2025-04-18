@@ -90,6 +90,30 @@ const App: React.FC = () => {
     )
   }
 
+  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(e.target.value)
+  }
+
+  // フィルター
+  useEffect(() => {
+    const filteringTodos = () => {
+      switch (filter) {
+        case 'notStarted':
+          setFilteredTodos(todos.filter((todo) => todo.status === 'notStarted'))
+          break
+        case 'inProgress':
+          setFilteredTodos(todos.filter((todo) => todo.status === 'inProgress'))
+          break
+        case 'done':
+          setFilteredTodos(todos.filter((todo) => todo.status === 'done'))
+          break
+        default:
+          setFilteredTodos(todos)
+      }
+    }
+    filteringTodos()
+  }, [filter, todos])
+
   return <div className="App">{/* ここにUI */}</div>
 }
 
